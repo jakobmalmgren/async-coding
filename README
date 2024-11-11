@@ -1,0 +1,50 @@
+Async Bootcamp
+Samling övningar om asynkrona funktioner.
+
+Promises
+.then() .catch()
+
+Log it
+Console.log() Promises olika state <pending>, <rejected>, <resolved>.
+
+Polka lover
+Gör en funktion vid namn letsDance(danceStyle)som bygger på ett Promise. Funktionen ska ta ett argument danceStyle. Om dansen som erbjuds är polka ska dansen godkännas med frasen Yes, polka is my thing!. Om Dansstilen som erbjuds är något annat så ska dansförfrågan rejectas med en syrlig diss. Funktionen ska ta 2s på sig att svara.
+
+letsDance('waltz')
+    .then(resp => console.log(response)) // ...
+    .catch(diss => console.log(diss)) // Not even if a pandemic roamed the earth
+Använd setTimeout för att fördröja funktionerna.
+
+Async / Await
+try / catch
+
+Fetch
+Webbprojektet
+Du ska göra ett webbprojekt. Gör en promise kedja för detta projekts moment i följande ordning med följande tider:
+
+Researcha målgruppen - 4s
+Skissa upp en design på papper - 2s
+Gör skissen till pixel perfect mockup I Figma / XD - 3s
+Koda - 3s
+Stackoverflow:a fel - 1s
+Testa produkten - 2s
+Fira lyckat projekt - 1s
+Använd setTimeout för att fördröja funktionerna. Testa med fördel både .then() och async/await.
+
+Kaffemaskinen
+Skapa en funktion brewCoffee(coffeeType) som bygger på ett Promise. Om kaffetypen är "espresso", ska det godkännas med "Your espresso is ready!". Om kaffetypen är något annat, ska det avvisas med "We only serve espresso here!". Använd setTimeout för att simulera bryggtiden på 3 sekunder.
+
+Matlagningstidslinje
+Skapa en kedja av Promise-funktioner för följande matlagningssteg: Förbereda ingredienser - 2s Koka upp vatten - 4s Laga maten - 5s Servera maten - 1s Testa att använda både .then() och async/await för att hantera dessa steg.
+
+Bokläsningsutmaning
+Skapa en funktion readBook(bookTitle) som bygger på ett Promise. Om boken är "JavaScript: The Good Parts", ska det godkännas med "Great choice!". Om boken är något annat, ska det avvisas med "Maybe try a different book?". Använd setTimeout för att simulera lästiden på 2 sekunder.
+
+Filmkväll
+Du planerar en filmkväll och behöver förbereda några saker. Skapa tre funktioner som returnerar Promises:
+
+makePopcorn() - Tar 2 sekunder och löser med "Popcorn ready!". getDrinks() - Tar 1 sekund och löser med "Drinks are cold!". chooseMovie() - Tar 3 sekunder och löser med "Movie selected!".
+
+Använd Promise.all() för att vänta på att alla dessa förberedelser är klara innan du loggar "Let's start the movie night!".
+
+Tips: Kom ihåg att med Promise.all() kan du hantera alla Promises samtidigt och få resultatet när alla är färdiga. Detta är perfekt för att se till att alla förberedelser är klara innan filmen börjar!
