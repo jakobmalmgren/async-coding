@@ -11,10 +11,6 @@
 //     //resolve
 //     console.log(resolve);
 //   })
-//   .then((reject) => {
-//     //rejected
-//     console.log(reject);
-//   })
 //   .catch((error) => {
 //     console.log(error);
 //   }); //error
@@ -23,26 +19,27 @@
 
 //POLKA LOVER
 
-// function letsDance(dance) {
-//   const promise = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       if (dance === "polka") {
-//         resolve("ja polka");
-//       } else reject("nej inge polka");
-//     }, 3000);
-//   });
-//   return promise;
-// }
+function letsDance(dance) {
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (dance === "polka") {
+        resolve("ja polka");
+      } else reject("nej inge polka");
+    }, 3000);
+  });
+  return promise;
+}
 
-// letsDance("polka")
-//   .then((resp) => {
-//     console.log(resp);
-//   })
+letsDance("polka")
+  .then((resp) => {
+    console.log(resp);
+  })
 
-//   .catch((err) => {
-//     console.log(err);
-//   });
+  .catch((err) => {
+    console.log(err);
+  });
 
+//.then() -...de som skickas med i den första parametern av .tthen() kan jag sedan använda i NÄSTA .then() om ja ex returnerar de i de föregående .then( ) block
 //Hantera then: I din kedja av .then() så är det bra att komma ihåg att det
 //första .then() hanterar det uppfyllda löftet och det andra .then() inte kommer att
 //hantera ett avvisat löfte. hantera detta med .catch() istället.
@@ -351,40 +348,102 @@
 
 // Använd Promise.all() för att vänta på att alla dessa förberedelser är klara innan du loggar "Let's start the movie night!".
 
-function makePopcorn() {
-  const promise = new Promise((res, rej) => {
-    setTimeout(() => {
-      res("popcorn ready");
-    }, 2000);
-  });
-  return promise;
-}
+// function makePopcorn() {
+//   const promise = new Promise((res, rej) => {
+//     setTimeout(() => {
+//       res("popcorn ready");
+//     }, 2000);
+//   });
+//   return promise;
+// }
 
-function getDrinks() {
-  const promise = new Promise((res, rej) => {
-    setTimeout(() => {
-      res("drinks are cold");
-    }, 1000);
-  });
-  return promise;
-}
+// function getDrinks() {
+//   const promise = new Promise((res, rej) => {
+//     setTimeout(() => {
+//       res("drinks are cold");
+//     }, 1000);
+//   });
+//   return promise;
+// }
 
-function chooseMovies() {
-  const promise = new Promise((res, rej) => {
-    setTimeout(() => {
-      res("movie selected");
-    }, 3000);
-  });
-  return promise;
-}
+// function chooseMovies() {
+//   const promise = new Promise((res, rej) => {
+//     setTimeout(() => {
+//       res("movie selected");
+//     }, 3000);
+//   });
+//   return promise;
+// }
 
-Promise.all([makePopcorn(), getDrinks(), chooseMovies()])
-  .then((res) => {
-    console.log(res);
-    console.log("Let's start the movie night!");
-  })
-  .catch((err) => {
-    console.log(err); // varför är de en callback på .catch( )här men när man gör try catch med async / await är catch (){}
-  });
+// Promise.all([makePopcorn(), getDrinks(), chooseMovies()])
+//   .then((res) => {
+//     console.log(res);
+//     console.log("Let's start the movie night!");
+//   })
+//   .catch((err) => {
+//     console.log(err); // varför är de en callback på .catch( )här men när man gör try catch med async / await är catch (){}
+//   });
 
 // ist för en .then här kan ja köra async /await här ist?kolla imorgon!
+
+//.finaly() kan man också använda i slutet
+// async / await - asyncronus code look like syncronous code
+// när ja skapar ett promise då gör den koden asyncront o så kan ja använda.then eller async/await ( kan använda then i async await me men de vore bara dumt)
+// och då läser programmet nästa del av koden och hoppar över promisekoden o kommer sen ttillbaka till promise koden el den operatioen som ttar lång tid när den e klar..
+// OCH ALL KOD jag vill ska köra efter om ja kanske hämtar data o ska göra nåt me den datan..kan ja styra genom då promise . then el async await för de
+// måsttte ju höra ihop där annars gör ja nåt me datan innan den hämtats klart o då kommer den bli undefined
+// new Promise är etttt obj som hantterar asyncrones code.
+// wrap a promise around a asyncrones code
+// i promise ttto return a value
+// pending, resolved, rejected
+// new Promise((resolved, rejected)=>{asyncrones code})
+// jag skapar ett promise för att skriva asyncrones code innanför {} tex saker som tar lång tid o ja vill ska köras vid sidan om "den andra koden" så de inte störs
+//i den asyncrona koden måste ja sen se till att lägga in koden som kanske ska hanttera data så de gör det ex efter min data har kommit i den asyncrona koden
+// för annars kanske den "koden vid sidan om" vill göra nåt med datan o de kmr INTE gå för den e undefined så den måste kopplas med i "kedjan" av asyncrones code
+// när man fetch() eller gör request till ex API behöver vi inte skapa promise manuellt utan de skapas automattiskt åt oss
+// så innan löste man asyncrones code med callbacks, sen nu är de promises med .then eller async await som är de smidigaste!
+
+// Det stämmer att du ofta ser .then() användas med fetch, eftersom fetch returnerar ett löfte (Promise).
+// Men du måste inte använda .then(). Istället kan du använda async och await för att hantera löftet på ett mer läsbart sätt.
+// Här är ett enkelt exempel för att visa skillnaden:
+
+// Med .then():
+// fetch('https://api.example.com/data')
+//   .then(response => response.json())
+//   .then(data => console.log(data))
+//   .catch(error => console.error('Något gick fel!', error));
+
+// Med async/await:
+// async function hämtaData() {
+//   try {
+//     const response = await fetch('https://api.example.com/data');  // de är precis som i första kodningarna på toppen..de returnerar ett promise ju, anitingen resolve stare el reject state
+//     const data = await response.json();
+//     console.log(data);
+//   } catch (error) {
+//     console.error('Något gick fel!', error);
+//   }
+// }
+
+// hämtaData();
+
+// om jag har en function med asyn await då vet jag de är en asyncrones kod och dem kör vidare annan kod...
+// MEN om jag har en vanlig funktion bara som returnerar ett promise, kommer koden köra annan javascript kod vid
+//  sidan om den och den blir en asyncron funktion också?
+// Aizo
+// APP
+//  — Idag 15:05
+// Bra fråga! 🤓 Låt oss dyka in i det!
+
+// När du har en vanlig funktion som returnerar ett Promise, så hanteras den faktiskt asynkront.
+// Det innebär att JavaScript kommer att fortsätta köra annan kod medan den väntar på att Promiset ska lösas.
+//  JavaScript är en "single-threaded" miljö, vilket betyder att det bara kan utföra en sak åt gången. Men genom
+//  att använda asynkrona mönster som Promises och async/await, kan det hantera operationer utan att blockera den huvudsakliga exekveringskedjan.
+
+//ska man inte sätta promises utanför async funktionen???????????????????????????????????????????????????? här är de INTE så..-->
+// async function myFunction() {
+//     return new Promise((resolve, reject) => {
+//       setTimeout(() => resolve("Klart!"), 1000);
+//     });
+//   }
+
+// luddigt!!!
